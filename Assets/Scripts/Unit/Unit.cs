@@ -3,14 +3,14 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     public UnitData unitData;
-    private string unitName;
-    private string unitRank;
-    private string unitType;
-    private float hp;
-    private float power;
-    private float defense;
-    private float buffRate;
-    private int reinforce;
+    public string unitName;
+    public string unitRank;
+    public string unitType;
+    public float hp;
+    public float power;
+    public float defense;
+    public float buffRate;
+    public int reinforce;
 
     private void Start()
     {
