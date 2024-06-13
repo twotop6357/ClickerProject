@@ -12,7 +12,7 @@ public class ShopManager : MonoBehaviour
         {
             case "ÀÏ¹İ":
                 return 70.0f;
-            case "Èñ±Í":
+            case "·¹¾î":
                 return 25.0f;
             case "Àü¼³":
                 return 5.0f;
