@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UserManager : MonoBehaviour
 {
+    public Unit initialUnit;
     private static UserManager _instance;
     public static UserManager Instance
     {
@@ -24,7 +25,7 @@ public class UserManager : MonoBehaviour
     }
 
     public List<Unit> ownedUnits = new List<Unit>();
-    public List<Unit> equippedUnits = new List<Unit>();
+    public Unit[] equippedUnits = new Unit[4];
 
     private void Awake()
     {
@@ -35,6 +36,14 @@ public class UserManager : MonoBehaviour
         else if(_instance != this)
         {
             Destroy(gameObject);
+        }
+
+        if (equippedUnits == null)
+        {
+            for(int i = 0; i < equippedUnits.Length; i++)
+            {
+                equippedUnits[i] = new Unit();
+            }
         }
     }
 }

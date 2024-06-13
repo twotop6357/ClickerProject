@@ -18,6 +18,9 @@ public class ButtonController : MonoBehaviour
     [SerializeField] private Image collectMultiPanel;
     [SerializeField] private GameObject multiUnitImageContainer;
 
+    [Header("PartyEdit")]
+    [SerializeField] private Image partyEditPanel;
+
     public void PressShopButton() // 영웅 모집 버튼
     {
         shopPanel.gameObject.SetActive(true);
@@ -44,5 +47,15 @@ public class ButtonController : MonoBehaviour
     public void PressShopPanelCloseButton() // 영웅 모집 패널 닫기 버튼
     {
         shopPanel.gameObject.SetActive(false);
+    }
+
+    public void PressPartyEditButton() // 공격대 편성 버튼
+    {
+        partyEditPanel.gameObject.SetActive(true);
+    }
+
+    public void PressClosePartyEditButton() // 공격대 편성 패널 닫기 버튼
+    {
+        partyEditPanel.gameObject.SetActive(false);
     }
 }

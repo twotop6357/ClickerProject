@@ -12,7 +12,6 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private GameObject singleUnitImageContainer;
     [SerializeField] private Image collectMultiPanel;
     [SerializeField] private GameObject multiUnitImageContainer;
-    //[SerializeField] private Image collectMultiPanel;
 
     private float GetWeightByRank(string rank) // 유닛의 등급 별 등장 확률 가중치를 받아오는 메서드
     {
