@@ -20,3 +20,4 @@ MonoBehaviour:
   defense: 5
   buffRate: 0
   reinforce: 0
+  iconImage: {fileID: 840165759411068417, guid: 7527b221c3f305c4691183b38df10bf3, type: 3}

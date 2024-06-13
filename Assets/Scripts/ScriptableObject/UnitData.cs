@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Unit Data", menuName = "Scriptable Object/Unit Data", order = int.MaxValue)]
 public class UnitData : ScriptableObject
@@ -29,4 +30,7 @@ public class UnitData : ScriptableObject
 
     [SerializeField] private int reinforce;
     public int Reinforce { get {  return reinforce; } }
+
+    [SerializeField] private Image iconImage;
+    public Image IconImage { get {  return iconImage; } }
 }

@@ -1,10 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] private List<Unit> units = new List<Unit>();
+
+    [Header("UI")]
+    [SerializeField] private Image collectSinglePanel;
+    [SerializeField] private GameObject singleUnitImageContainer;
+    [SerializeField] private Image collectMultiPanel;
+    [SerializeField] private GameObject multiUnitImageContainer;
+    //[SerializeField] private Image collectMultiPanel;
 
     private float GetWeightByRank(string rank) // 유닛의 등급 별 등장 확률 가중치를 받아오는 메서드
     {
@@ -24,8 +32,12 @@ public class ShopManager : MonoBehaviour
     public void SingleDraw()
     {
         Unit drawnUnit = DrawSingleUnit();
+        UserManager.Instance.ownedUnits.Add(drawnUnit);
+        Image image = Instantiate(drawnUnit.unitData.IconImage, singleUnitImageContainer.transform);
+        image.transform.localScale = new Vector2(3, 3);
+        collectSinglePanel.gameObject.SetActive(true);
         // 확인용
-        Debug.Log($"{drawnUnit.unitData.UnitRank}, {drawnUnit.unitData.UnitName}");
+        //Debug.Log($"{drawnUnit.unitData.UnitRank}, {drawnUnit.unitData.UnitName} 유닛이 리스트에 추가되었습니다.");
         // 확인용
     }
 
@@ -33,11 +45,14 @@ public class ShopManager : MonoBehaviour
     {
         List<Unit> drawnUnits = new List<Unit>();
         drawnUnits = DrawUnits();
-        // 확인용
         for (int j = 0; j < drawnUnits.Count; j++)
         {
-            Debug.Log($"{drawnUnits[j].unitData.UnitRank}, {drawnUnits[j].unitData.UnitName}");
+            UserManager.Instance.ownedUnits.Add(drawnUnits[j]);
+            Instantiate(drawnUnits[j].unitData.IconImage, multiUnitImageContainer.transform);
+            collectMultiPanel.gameObject.SetActive(true);
         }
+        // 확인용
+        //    Debug.Log($"{drawnUnits[j].unitData.UnitRank}, {drawnUnits[j].unitData.UnitName} 유닛이 리스트에 추가되었습니다.");
         // 확인용
     }
 
