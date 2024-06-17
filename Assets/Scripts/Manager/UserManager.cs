@@ -8,6 +8,7 @@ public class UserManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gem;
     [SerializeField] private TextMeshProUGUI partyPower;
     public int partyPoint;
+    public int gemRate;
     public bool isParty = false;
     
     public Unit initialUnit;
@@ -52,6 +53,8 @@ public class UserManager : MonoBehaviour
                 equippedUnits[i] = new Unit();
             }
         }
+        partyPoint = 0;
+        gemRate = 5000;
     }
 
     private void Update()
@@ -60,6 +63,8 @@ public class UserManager : MonoBehaviour
         {
             CalcPartyPower();
         }
+        gem.text = gemRate.ToString();
+        partyPower.text = partyPoint.ToString();
     }
 
     private void CalcPartyPower()

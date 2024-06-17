@@ -21,6 +21,10 @@ public class ButtonController : MonoBehaviour
     [Header("PartyEdit")]
     [SerializeField] private Image partyEditPanel;
 
+    [Header("PlayMode")]
+    [SerializeField] private Image playModePanel;
+    [SerializeField] private Image endingPanel;
+
     public void PressShopButton() // 영웅 모집 버튼
     {
         shopPanel.gameObject.SetActive(true);
@@ -57,5 +61,21 @@ public class ButtonController : MonoBehaviour
     public void PressClosePartyEditButton() // 공격대 편성 패널 닫기 버튼
     {
         partyEditPanel.gameObject.SetActive(false);
+    }
+
+    public void PressGamePlayButton()
+    {
+        playModePanel.gameObject.SetActive(true);
+    }
+
+    public void PressGameOverButton()
+    {
+        endingPanel.gameObject.SetActive(true);
+    }
+
+    public void PressEndingPanelCloseButton()
+    {
+        endingPanel.gameObject.SetActive(false) ;
+        playModePanel.gameObject.SetActive(false ) ;
     }
 }

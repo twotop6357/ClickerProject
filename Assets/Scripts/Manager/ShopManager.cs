@@ -18,11 +18,11 @@ public class ShopManager : MonoBehaviour
         switch(rank)
         {
             case "일반":
-                return 70.0f;
+                return 55.0f;
             case "레어":
-                return 25.0f;
+                return 30.0f;
             case "전설":
-                return 5.0f;
+                return 15.0f;
             default:
                 return 1.0f;
         }
@@ -30,51 +30,62 @@ public class ShopManager : MonoBehaviour
 
     public void SingleDraw()
     {
-        Unit drawnUnit = DrawSingleUnit();
-        
-        int index = UserManager.Instance.ownedUnits.IndexOf(drawnUnit);
-        if (index != -1) 
+        if(UserManager.Instance.gemRate >= 250) 
         {
-            UserManager.Instance.ownedUnits[index].AddStack();
+            UserManager.Instance.gemRate -= 250;
+            Unit drawnUnit = DrawSingleUnit();
+
+            int index = UserManager.Instance.ownedUnits.IndexOf(drawnUnit);
+            if (index != -1)
+            {
+                UserManager.Instance.ownedUnits[index].AddStack();
+            }
+            else
+            {
+                drawnUnit.InitStatus();
+                UserManager.Instance.ownedUnits.Add(drawnUnit);
+            }
+
+            Image image = Instantiate(drawnUnit.unitData.IconImage, singleUnitImageContainer.transform);
+            image.transform.localScale = new Vector2(3, 3);
+            collectSinglePanel.gameObject.SetActive(true);
         }
         else
         {
-            drawnUnit.InitStatus();
-            UserManager.Instance.ownedUnits.Add(drawnUnit);
+            Debug.Log("젬이 부족합니다.");
         }
         
-        Image image = Instantiate(drawnUnit.unitData.IconImage, singleUnitImageContainer.transform);
-        image.transform.localScale = new Vector2(3, 3);
-        collectSinglePanel.gameObject.SetActive(true);
-        // 확인용
-        //Debug.Log($"{drawnUnit.unitData.UnitRank}, {drawnUnit.unitData.UnitName} 유닛이 리스트에 추가되었습니다.");
-        // 확인용
     }
 
     public void MultiDraw()
     {
-        List<Unit> drawnUnits = new List<Unit>();
-        drawnUnits = DrawUnits();
-        for (int j = 0; j < drawnUnits.Count; j++)
+        if(UserManager.Instance.gemRate >= 2500)
         {
-            int index = UserManager.Instance.ownedUnits.IndexOf(drawnUnits[j]);
-            if (index != -1)
+            UserManager.Instance.gemRate -= 2500;
+            List<Unit> drawnUnits = new List<Unit>();
+            drawnUnits = DrawUnits();
+            for (int j = 0; j < drawnUnits.Count; j++)
             {
-                UserManager.Instance.ownedUnits[index].AddStack();
-                Debug.Log(UserManager.Instance.ownedUnits[index].stack);
+                int index = UserManager.Instance.ownedUnits.IndexOf(drawnUnits[j]);
+                if (index != -1)
+                {
+                    UserManager.Instance.ownedUnits[index].AddStack();
+                    Debug.Log(UserManager.Instance.ownedUnits[index].stack);
+                }
+                else
+                {
+                    drawnUnits[j].InitStatus();
+                    UserManager.Instance.ownedUnits.Add(drawnUnits[j]);
+                }
+                // UserManager.Instance.ownedUnits.Add(drawnUnits[j]);
+                Instantiate(drawnUnits[j].unitData.IconImage, multiUnitImageContainer.transform);
+                collectMultiPanel.gameObject.SetActive(true);
             }
-            else
-            {
-                drawnUnits[j].InitStatus();
-                UserManager.Instance.ownedUnits.Add(drawnUnits[j]);
-            }
-            // UserManager.Instance.ownedUnits.Add(drawnUnits[j]);
-            Instantiate(drawnUnits[j].unitData.IconImage, multiUnitImageContainer.transform);
-            collectMultiPanel.gameObject.SetActive(true);
         }
-        // 확인용
-        //    Debug.Log($"{drawnUnits[j].unitData.UnitRank}, {drawnUnits[j].unitData.UnitName} 유닛이 리스트에 추가되었습니다.");
-        // 확인용
+        else
+        {
+            Debug.Log("젬이 부족합니다.");
+        }
     }
 
     public Unit DrawSingleUnit()
