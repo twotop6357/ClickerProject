@@ -31,7 +31,18 @@ public class ShopManager : MonoBehaviour
     public void SingleDraw()
     {
         Unit drawnUnit = DrawSingleUnit();
-        UserManager.Instance.ownedUnits.Add(drawnUnit);
+        
+        int index = UserManager.Instance.ownedUnits.IndexOf(drawnUnit);
+        if (index != -1) 
+        {
+            UserManager.Instance.ownedUnits[index].AddStack();
+        }
+        else
+        {
+            drawnUnit.InitStatus();
+            UserManager.Instance.ownedUnits.Add(drawnUnit);
+        }
+        
         Image image = Instantiate(drawnUnit.unitData.IconImage, singleUnitImageContainer.transform);
         image.transform.localScale = new Vector2(3, 3);
         collectSinglePanel.gameObject.SetActive(true);
@@ -46,7 +57,18 @@ public class ShopManager : MonoBehaviour
         drawnUnits = DrawUnits();
         for (int j = 0; j < drawnUnits.Count; j++)
         {
-            UserManager.Instance.ownedUnits.Add(drawnUnits[j]);
+            int index = UserManager.Instance.ownedUnits.IndexOf(drawnUnits[j]);
+            if (index != -1)
+            {
+                UserManager.Instance.ownedUnits[index].AddStack();
+                Debug.Log(UserManager.Instance.ownedUnits[index].stack);
+            }
+            else
+            {
+                drawnUnits[j].InitStatus();
+                UserManager.Instance.ownedUnits.Add(drawnUnits[j]);
+            }
+            // UserManager.Instance.ownedUnits.Add(drawnUnits[j]);
             Instantiate(drawnUnits[j].unitData.IconImage, multiUnitImageContainer.transform);
             collectMultiPanel.gameObject.SetActive(true);
         }

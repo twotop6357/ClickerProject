@@ -945,14 +945,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3879167146716084885}
-  m_LocalRotation: {x: -0, y: 0.008727774, z: -0, w: 0.9999619}
+  m_LocalRotation: {x: 0, y: 0.008726558, z: 0, w: 0.999962}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 500, y: 500, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1094552658891546338}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 1, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -170}
@@ -987,6 +987,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitData: {fileID: 11400000, guid: 0d8afd9ad29979547bf14d1c3f90fb60, type: 2}
+  unitName: "\uBE14\uB808\uC774\uB4DC"
+  unitRank: "\uC804\uC124"
+  unitType: "\uACF5\uACA9"
+  hp: 100
+  power: 25
+  defense: 5
+  buffRate: 0
+  reinforce: 0
+  stack: 0
 --- !u!1 &3898551359153439688
 GameObject:
   m_ObjectHideFlags: 0

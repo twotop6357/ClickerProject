@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,4 +34,7 @@ public class UnitData : ScriptableObject
 
     [SerializeField] private Image iconImage;
     public Image IconImage { get {  return iconImage; } }
+
+    [SerializeField] private int stack;
+    public int Stack { get { return stack; } }
 }

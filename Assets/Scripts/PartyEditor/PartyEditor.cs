@@ -92,13 +92,13 @@ public class PartyEditor : MonoBehaviour
             UserManager.Instance.ownedUnits.Add(UserManager.Instance.equippedUnits[index]);
         }
         UserManager.Instance.equippedUnits[index] = unit;
+
+        UserManager.Instance.isParty = true;
         int listIndex = UserManager.Instance.ownedUnits.IndexOf(unit);
         if(listIndex != -1)
         {
             UserManager.Instance.ownedUnits.RemoveAt(listIndex);
         }
         unitSelectPanel.gameObject.SetActive(false);
-        // TODO
-        // 유닛이 중복 장착 되지 않도록 하는 요소 추가하기
     }
 }

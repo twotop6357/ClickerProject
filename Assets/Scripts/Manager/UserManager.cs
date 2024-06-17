@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UserManager : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI gem;
+    [SerializeField] private TextMeshProUGUI partyPower;
+    public int partyPoint;
+    public bool isParty = false;
+    
     public Unit initialUnit;
+
     private static UserManager _instance;
     public static UserManager Instance
     {
@@ -45,5 +52,35 @@ public class UserManager : MonoBehaviour
                 equippedUnits[i] = new Unit();
             }
         }
+    }
+
+    private void Update()
+    {
+        if(isParty == true)
+        {
+            CalcPartyPower();
+        }
+    }
+
+    private void CalcPartyPower()
+    {
+        float hp = 0;
+        float power = 0;
+        float defense = 0;
+
+        foreach(Unit unit in equippedUnits)
+        {
+            if(unit != null)
+            {
+                hp += unit.hp;
+                power += unit.power;
+                defense += unit.defense;
+                power = power + (power * unit.buffRate);
+                defense = defense + (defense * unit.buffRate);
+            }
+        }
+        
+        partyPoint = (int)(hp + power + defense);
+        partyPower.text = partyPoint.ToString();
     }
 }

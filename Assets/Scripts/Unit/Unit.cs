@@ -11,26 +11,42 @@ public class Unit : MonoBehaviour
     public float defense;
     public float buffRate;
     public int reinforce;
+    public int stack;
+    private float reinforceRate = 100;
 
-    private void Start()
+    
+    public void InitStatus()
     {
-        if(unitData != null)
-        {
-            // Init Status
-            unitName = unitData.UnitName;
-            unitRank = unitData.UnitRank;
-            unitType = unitData.UnitType;
-            hp = unitData.HP;
-            power = unitData.Power;
-            defense = unitData.Defense;
-            buffRate = unitData.BuffRate;
-            reinforce = unitData.Reinforce;
+        unitName = unitData.UnitName;
+        unitRank = unitData.UnitRank;
+        unitType = unitData.UnitType;
+        hp = unitData.HP;
+        power = unitData.Power;
+        defense = unitData.Defense;
+        buffRate = unitData.BuffRate;
+        reinforce = unitData.Reinforce;
+        stack = unitData.Stack;
+    }
 
-            // Reinforced Status
-            hp += reinforce * (hp / 10);
-            power += reinforce * (power / 10);
-            defense += reinforce * (defense / 10);
-            buffRate += reinforce * (reinforce / 10);
+    private void UpdateReinforcedStatus()
+    {
+        hp += (reinforce / 10) * reinforceRate;
+        power += (reinforce / 20) * reinforceRate;
+        defense += (reinforce / 20) * reinforceRate;
+    }
+
+    public void AddStack()
+    {
+        stack++;
+        if(stack >= 10)
+        {
+            if (stack >= 10)
+            {
+                stack -= 10;
+                reinforce++;
+                UpdateReinforcedStatus();
+            }
         }
+        Debug.Log($"{unitName} {unitRank} stack : {stack}");
     }
 }
