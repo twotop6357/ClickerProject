@@ -3119,7 +3119,7 @@ MonoBehaviour:
   unitName: "\uC6CC\uB85C\uB4DC"
   unitRank: "\uC77C\uBC18"
   unitType: "\uBC29\uC5B4"
-  hp: 100
+  hp: 200
   power: 5
   defense: 10
   buffRate: 5

@@ -25,6 +25,9 @@ public class ButtonController : MonoBehaviour
     [SerializeField] private Image playModePanel;
     [SerializeField] private Image endingPanel;
 
+    [Header("Help")]
+    [SerializeField] private Image helpPanel;
+
     public void PressShopButton() // 영웅 모집 버튼
     {
         shopPanel.gameObject.SetActive(true);
@@ -77,5 +80,15 @@ public class ButtonController : MonoBehaviour
     {
         endingPanel.gameObject.SetActive(false) ;
         playModePanel.gameObject.SetActive(false ) ;
+    }
+
+    public void PressHelpButton()
+    {
+        helpPanel.gameObject.SetActive(true);
+    }
+
+    public void PressCloseHelpPanelButton()
+    {
+        helpPanel.gameObject.SetActive(false) ;
     }
 }
