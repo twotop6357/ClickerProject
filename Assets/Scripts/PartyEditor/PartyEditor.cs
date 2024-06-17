@@ -87,7 +87,16 @@ public class PartyEditor : MonoBehaviour
         }
         Image image = Instantiate(unit.unitData.IconImage, button.transform);
         Debug.Log(index);
+        if (UserManager.Instance.equippedUnits[index] != null)
+        {
+            UserManager.Instance.ownedUnits.Add(UserManager.Instance.equippedUnits[index]);
+        }
         UserManager.Instance.equippedUnits[index] = unit;
+        int listIndex = UserManager.Instance.ownedUnits.IndexOf(unit);
+        if(listIndex != -1)
+        {
+            UserManager.Instance.ownedUnits.RemoveAt(listIndex);
+        }
         unitSelectPanel.gameObject.SetActive(false);
         // TODO
         // 유닛이 중복 장착 되지 않도록 하는 요소 추가하기
